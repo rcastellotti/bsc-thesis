@@ -5,18 +5,27 @@
 ## generate a signing key
 `keytool -genkey -v -keystore key.jks -alias rc -keyalg RSA -keysize 2048 -validity 10000`
 
-## extract an apk
+## com.westernunion.moneytransferr3app.eu
 
-`java -jar ~/bin/apktool_2.6.1.jar d app_name.apk`
-
-
-## rebuild, align sign and install
-
-`./build.sh app_name`
++ `java -jar ~/bin/apktool_2.6.1.jar d western-union.apk`
++ `patch -p1 < western-union.patch`
++ `./build.sh western-union`
 
 
+## using frida 
 
-Installiamo l' APK: 
++ `com.pay4vend.bapp`
++ `com.revolut.revolut` 
++ some features of `com.scottyab.rootbeer.sample.debug` 
+
+
+## todo
+
++ indagare safetynet
+
+
+## errori riscontrati 
+
 
 `~/Android/Sdk/platform-tools/adb install app_name.apk`
 
@@ -36,41 +45,18 @@ Ora installiamolo:
 adb: failed to install nosu.apk: Failure [-124: Failed parse during installPackageLI: Targeting R+ (version 30 and above) requires the resources.arsc of installed APKs to be stored uncompressed and aligned on a 4-byte boundary]
 ```
 
-Dobbiamo allinearlo, 
-va allineato???
+Dobbiamo allinearlo
 
-~/Android/Sdk/build-tools/33.0.0/zipalign -f -p 4 nosu.apk  aligned-nosu.apk
+`~/Android/Sdk/build-tools/33.0.0/zipalign -f -p 4 nosu.apk  aligned-nosu.apk`
 
+```
 adb: failed to install aligned-nosu.apk: Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES: Failed collecting certificates for /data/app/vmdl2022680343.tmp/base.apk: Failed to collect certificates from /data/app/vmdl2022680343.tmp/base.apk: META-INF/KEY0.SF indicates /data/app/vmdl2022680343.tmp/base.apk is signed using APK Signature Scheme v2, but no such signature was found. Signature stripped?]
-rc@s369 ~/g/bsc-thesis (main) [1]>
+```
 
- ~/Android/Sdk/build-tools/33.0.0/apksigner sign --ks ../../key.jks  aligned-nosu.apk
-
-ora installiamolo per davvero
+`~/Android/Sdk/build-tools/33.0.0/apksigner sign --ks ../../key.jks  aligned-nosu.apk`
 
 
+ora installiamolo per davvero  
 
-conttrollare safetynet
+`~/Android/Sdk/platform-tools/adb install aligned-nosu.apk`
 
-
-
-## com.westernunion.moneytransferr3app.eu
-
-`java -jar ~/bin/apktool_2.6.1.jar d western-union.apk`
-
-`patch -p1 < western-union.patch`
-
-`./build.sh western-union`
-
-
-## com.revolut.revolut
-
-script frida anche bapp
-
-
-##
-
-
-mezza@mailinator.com
-mezza123!
-username mezza375e'
