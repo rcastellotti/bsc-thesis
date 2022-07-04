@@ -60,3 +60,18 @@ ora installiamolo per davvero
 
 `~/Android/Sdk/platform-tools/adb install aligned-nosu.apk`
 
+
+
+## slides
+
++ introduzione android
++ setup root phone (lineage, magisk, tool vari)
++ root: perche' farlo
++ root detection: perche'
++ root detection: come 
+    + [https://github.com/scottyab/rootbeer](https://github.com/scottyab/rootbeer)
++ patchare e reinstallare app
++ usare frida
++ introduzione ai tool usati
++ approfondimento signature app
++ 
