@@ -1,6 +1,5 @@
 # bsc-thesis
 + [apks](https://drive.google.com/drive/folders/1_T9COrPe95sVOy7lEoF2vNb01mbXYRrZ?usp=sharing)
-+ [mobisec native code](https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM/edit#slide=id.g42ed32a0b4_0_0)
 
 ## generate a signing key
 `keytool -genkey -v -keystore key.jks -alias rc -keyalg RSA -keysize 2048 -validity 10000`
@@ -25,7 +24,6 @@
 
 
 ## errori riscontrati 
-
 
 `~/Android/Sdk/platform-tools/adb install app_name.apk`
 
@@ -65,6 +63,10 @@ ora installiamolo per davvero
 ## slides
 
 + introduzione android
++ introduzione "apk"
+    + [https://developer.android.com/guide/components/fundamentals](https://developer.android.com/guide/components/fundamentals)
+    + [mobisec native code](https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM/edit#slide=id.g42ed32a0b4_0_0)
+    + spiegare come si passa da sorgente java a bytecode 
 + setup root phone (lineage, magisk, tool vari)
 + root: perche' farlo
 + root detection: perche'
@@ -73,5 +75,4 @@ ora installiamolo per davvero
 + patchare e reinstallare app
 + usare frida
 + introduzione ai tool usati
-+ approfondimento signature app
-+ 
++ approfondimento signature app (in particolare patchare con frida meglio perche' firma vera)
