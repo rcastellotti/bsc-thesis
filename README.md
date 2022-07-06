@@ -1,6 +1,5 @@
 # bsc-thesis
 
-![badge](https://github.com/rcastellotti/bsc-thesis/actions/workflows/latex.yml/badge.svg)
 [![](https://img.shields.io/badge/download%20apks-drive.svg)](https://drive.google.com/drive/folders/1_T9COrPe95sVOy7lEoF2vNb01mbXYRrZ)
 
 ## generate a signing key
