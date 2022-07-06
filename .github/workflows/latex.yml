@@ -10,3 +10,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: slides/main.tex
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: main.pdf
