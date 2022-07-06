@@ -1,7 +1,7 @@
 This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2022.7.6)  7 JUL 2022 00:04
  system commands enabled.
-**main.tex
-(./main.tex
+**slides/main.tex
+(./slides/main.tex
 LaTeX2e <2021-11-15> patch level 1
 Lua module: luaotfload 2021-05-21 3.18 Lua based OpenType font support
 Lua module: lualibs 2021-05-20 2.74 ConTeXt Lua standard libraries.
@@ -960,8 +960,6 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
 LaTeX Info: Redefining \nameref on input line 17.
-
-(./main.out) (./main.out)
 \@outlinefile=\write7
 
 \openout7 = main.out
@@ -1031,12 +1029,15 @@ Dictionary: translator-numbers-dictionary, Language: English
 (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-theorem-dictiona
 ry-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-) (./main.nav) [1
+)
+No file main.nav.
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
 
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
@@ -1058,67 +1059,37 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
 ]
 \openout4 = main.vrb
  (./main.vrb
-<patch.png, id=99, 183.5658pt x 117.8001pt>
-File: patch.png Graphic file (type png)
-<use patch.png>
-Package luatex.def Info: patch.png  used on input line 6.
-(luatex.def)             Requested size: 256.99034pt x 164.91898pt.
 
-\openout6 = main.pyg
+LaTeX Warning: File `patch.png' not found on input line 6.
 
-(./_minted-main/default.pygstyle)
-(./_minted-main/C05D94C21E38FCB8CDA5CDB39C1C647A11AAD2007D6CDB077724573EAB01ACD
-1.pygtex
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2.
-))
-Overfull \vbox (0.46338pt too high) detected at line 64
- []
 
-[4
+! Package luatex.def Error: File `patch.png' not found: using draft setting.
 
-<./patch.png>] [5
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ...tering \includegraphics[scale=1.4]{patch.png}
+                                                  
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.6 ...tering \includegraphics[scale=1.4]{patch.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-] [6
 
-]
-\tf@nav=\write8
-
-\openout8 = main.nav
-\tf@toc=\write9
-
-\openout9 = main.toc
-\tf@snm=\write10
-
-\openout10 = main.snm
- (./main.aux)
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-runsystem(rm main.pyg)...executed
-)
 
 Here is how much of LuaTeX's memory you used:
- 25677 strings out of 477805
- 100000,953878 words of node,token memory allocated
- 4121 words of node memory still in use:
-   39 hlist, 9 vlist, 4 rule, 19 disc, 6 local_par, 8 math, 104 glue, 20 kern, 2
-4 penalty, 206 glyph, 100 attribute, 64 glue_spec, 100 attribute_list, 4 write, 
-4 pdf_start_link, 4 pdf_end_link, 4 pdf_action, 36 pdf_colorstack nodes
-   avail lists: 2:604,3:297,4:303,5:213,6:45,7:2085,8:69,9:342,10:12,11:125
- 45042 multiletter control sequences out of 65536+600000
- 51 fonts using 4183071 bytes
- 128i,14n,115p,402b,761s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/opentype/public/lm/lmsans10-bold.otf></usr/share/texmf/f
-onts/opentype/public/lm/lmmono10-regular.otf></usr/share/texmf/fonts/opentype/pu
-blic/lm/lmmonolt10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono9-r
-egular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans8-regular.otf></usr/
-share/texmf/fonts/opentype/public/lm/lmsans10-regular.otf></usr/share/texmf/font
-s/opentype/public/lm/lmsans12-regular.otf></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (6 pages, 83915 bytes).
-
-PDF statistics: 234 PDF objects out of 1000 (max. 8388607)
- 194 compressed objects within 2 object streams
- 13 named destinations out of 1000 (max. 131072)
- 16 words of extra memory for PDF output out of 10000 (max. 100000000)
-
+ 25507 strings out of 477805
+ 100000,953878 words of node,token memory allocated 7875 words of node memory still in use:
+   62 hlist, 9 vlist, 4 rule, 40 disc, 12 local_par, 3 dir, 16 math, 199 glue, 3
+0 kern, 42 penalty, 518 glyph, 157 attribute, 73 glue_spec, 157 attribute_list, 
+3 temp, 7 if_stack, 1 write, 46 pdf_colorstack nodes
+   avail lists: 2:480,3:286,4:293,5:164,6:43,7:1352,8:73,9:319,10:12,11:74
+ 44907 multiletter control sequences out of 65536+600000
+ 46 fonts using 3546967 bytes
+ 128i,14n,115p,409b,606s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
