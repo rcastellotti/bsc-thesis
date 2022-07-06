@@ -15,3 +15,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: main.pdf
+
+          ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/rcastellotti/bsc-thesis/latex)

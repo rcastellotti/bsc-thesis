@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{.method public static isDeviceRooted()Z}
+\PYG{x}{    .locals 2}
+
+\PYG{x}{    const\PYGZhy{}string v0, \PYGZdq{}isDeviceRooted\PYGZdq{}}
+
+\PYG{x}{    ...}
+
+\PYG{x}{    :cond\PYGZus{}1}
+\PYG{x}{    :goto\PYGZus{}0}
+\PYG{x}{    const/4 v0, 0x1}
+
+\PYG{x}{    :goto\PYGZus{}1}
+\PYG{x}{    return v0}
+\PYG{x}{.end method}
+
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\frametitle{patch-and-reinstall: an example}
+
+   The patching process is usually a matter of finding the methods performing root detection and patching them, here is an example from a popular financial services company's application:
+
+\begin{figure}
+    \centering \includegraphics[scale=1.4]{patch.png}
+    \caption{patching \mintinline{smali}{.method public static isDeviceRooted()Z} }
+\end{figure}
+

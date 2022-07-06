@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZhy{}\PYGZhy{}\PYGZhy{}
+ .../com/westernunion/moneytransferr3app/util/WuRootUtil.smali   \PYG{p}{|} \PYG{l+m}{2} +\PYGZhy{}
+ \PYG{l+m}{1} file changed, \PYG{l+m}{1} insertion\PYG{o}{(}+\PYG{o}{)}, \PYG{l+m}{1} deletion\PYG{o}{(}\PYGZhy{}\PYG{o}{)}
+
+diff \PYGZhy{}\PYGZhy{}git a/western\PYGZhy{}union/smali\PYGZus{}classes2/com/westernunion/moneytransferr3app/util/WuRootUtil.smali b/western\PYGZhy{}union/smali\PYGZus{}classes2/com/westernunion/moneytransferr3app/util/WuRootUtil.smali
+index 6460600e0..866aaf619 \PYG{l+m}{100644}
+\PYGZhy{}\PYGZhy{}\PYGZhy{} a/western\PYGZhy{}union/smali\PYGZus{}classes2/com/westernunion/moneytransferr3app/util/WuRootUtil.smali
++++ b/western\PYGZhy{}union/smali\PYGZus{}classes2/com/westernunion/moneytransferr3app/util/WuRootUtil.smali
+@@ \PYGZhy{}329,7 +329,7 @@
+
+     :cond\PYGZus{}1
+     :goto\PYGZus{}0
+\PYGZhy{}    const/4 v0, 0x1
++    const/4 v0, 0x0
+
+     :goto\PYGZus{}1
+     \PYG{k}{return} v0
+\PYGZhy{}\PYGZhy{}
+GitLab
+
+
+\end{Verbatim}

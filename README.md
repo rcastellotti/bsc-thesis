@@ -1,5 +1,7 @@
 # bsc-thesis
-+ [apks](https://drive.google.com/drive/folders/1_T9COrPe95sVOy7lEoF2vNb01mbXYRrZ?usp=sharing)
+
+![badge](https://github.com/rcastellotti/bsc-thesis/actions/workflows/latex.yml/badge.svg)
+[![](https://img.shields.io/badge/download%20apks-drive.svg)](https://drive.google.com/drive/folders/1_T9COrPe95sVOy7lEoF2vNb01mbXYRrZ)
 
 ## generate a signing key
 `keytool -genkey -v -keystore key.jks -alias rc -keyalg RSA -keysize 2048 -validity 10000`
@@ -57,22 +59,3 @@ adb: failed to install aligned-nosu.apk: Failure [INSTALL_PARSE_FAILED_NO_CERTIF
 ora installiamolo per davvero  
 
 `~/Android/Sdk/platform-tools/adb install aligned-nosu.apk`
-
-
-
-## slides
-
-+ introduzione android
-+ introduzione "apk"
-    + [https://developer.android.com/guide/components/fundamentals](https://developer.android.com/guide/components/fundamentals)
-    + [mobisec native code](https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM/edit#slide=id.g42ed32a0b4_0_0)
-    + spiegare come si passa da sorgente java a bytecode 
-+ setup root phone (lineage, magisk, tool vari)
-+ root: perche' farlo
-+ root detection: perche'
-+ root detection: come 
-    + [https://github.com/scottyab/rootbeer](https://github.com/scottyab/rootbeer)
-+ patchare e reinstallare app
-+ usare frida
-+ introduzione ai tool usati
-+ approfondimento signature app (in particolare patchare con frida meglio perche' firma vera)

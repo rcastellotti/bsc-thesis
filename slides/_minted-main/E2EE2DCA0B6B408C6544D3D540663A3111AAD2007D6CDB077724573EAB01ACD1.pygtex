@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{k}{.method}\PYG{+w}{ }\PYG{k}{public}\PYG{+w}{ }\PYG{k}{static}\PYG{+w}{ }\PYG{n+nf}{isDeviceRooted}\PYG{p}{()}\PYG{k+kt}{Z}
+\PYG{+w}{    }\PYG{k}{.locals}\PYG{+w}{ }\PYG{l+m+mi}{2}
+
+\PYG{+w}{    }const\PYGZhy{}string\PYG{+w}{ }\PYG{n+nb}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}isDeviceRooted\PYGZdq{}}
+
+\PYG{+w}{    }\PYG{p}{...}
+
+\PYG{+w}{    }\PYG{n+nl}{:cond\PYGZus{}1}
+\PYG{+w}{    }\PYG{n+nl}{:goto\PYGZus{}0}
+\PYG{+w}{    }const/4\PYG{+w}{ }\PYG{n+nb}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x1}
+
+\PYG{+w}{    }\PYG{n+nl}{:goto\PYGZus{}1}
+\PYG{+w}{    }return\PYG{+w}{ }\PYG{n+nb}{v0}
+\PYG{k}{.end}\PYG{+w}{ }\PYG{k}{method}
+
+\end{Verbatim}
