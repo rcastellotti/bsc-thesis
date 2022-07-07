@@ -1,38 +1,67 @@
 \documentclass{beamer}
+
 \usepackage{minted}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \hypersetup{
     colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
     urlcolor=blue,
 }
-
 \title{Android Root Detection Evasion}
-\author[]{Roberto Castellotti\\{\small Supervised by: prof. Giovanni Lagorio}}
-\institute{Università degli Studi di Genova}
+\author[Roberto Castellotti]{Roberto Castellotti \\ {\small Supervised by: prof. Giovanni Lagorio}}
+\institute{Università di Genova}
 \date{2022}
 
 \begin{document}
-\makeatletter
 
 \frame{\titlepage}
 
-\begin{frame}{Introduction to Android}
+\begin{frame}{fundamentals: Android}
+    https://developer.android.com/guide/components/fundamentals 
+\end{frame}
 
-\begin{itemize}
-    \item introduzione android
-    \item introduzione "apk" https://developer.android.com/guide/components/fundamentals mobisec native code
-    \item spiegare come si passa da sorgente java a bytecode
-    \item setup root phone (lineage, magisk, twrp, tool vari)
-    \item root: perche' farlo
-    \item root detection: perche'
-    \item root detection: come https://github.com/scottyab/rootbeer
-    \item approfondimento signature app (in particolare patchare con frida meglio perche' firma vera)
-    \item tool usati
-\end{itemize}
+\begin{frame}{fundamentals: java to bytecode and back}
+mobisec native code
+\end{frame}
+
+\begin{frame}{fundamentals: unlocking bootloader, recovery, root (con magisk)}
+    lineage, magisk, twrp, tool vari approfondimento dm verity
+    a cosa serve il root
+\end{frame}
+
+
+\begin{frame}{root detection: why}
 
 \end{frame}
 
+
+\begin{frame}[fragile]{root detection: how}
+
+    \begin{itemize}
+        \item check for root management apps (\texttt{com.topjohnwu.magisk})
+\begin{minted}[fontsize=\footnotesize]{java}
+import android.content.pm.PackageManager;
+import android.content.Context;
+private final Context mContext;
+PackageManager pm = mContext.getPackageManager();
+pm.getPackageInfo(packageName, 0);
+\end{minted}
+        \item check root cloaking appps {\small (\texttt{com.devadvance.rootcloak},\texttt{de.robv.android.xposed.installer})}
+        \item check for dangerous applications (\texttt{com.dimonvideo.luckypatcher})
+        \item check for binaries (\texttt{busybox,su})
+\begin{minted}[fontsize=\footnotesize]{java}
+File f = new File(path, filename);
+boolean fileExists = f.exists();
+\end{minted}
+        \item check if some paths are writable (\texttt{/system, /sbin, /etc})
+\begin{minted}[fontsize=\footnotesize]{java}
+InputStream inputstream = Runtime.getRuntime().exec("mount")
+\end{minted}
+    \end{itemize}
+
+\end{frame}
 
 \begin{frame}{patch-and-reinstall}
 
