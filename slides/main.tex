@@ -1,16 +1,17 @@
 \documentclass{beamer}
-
 \usepackage{minted}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usetheme{Boadilla}
+\usecolortheme[]{seahorse}
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
+    linkcolor=black,
     filecolor=magenta,      
     urlcolor=blue,
 }
 \title{Android Root Detection Evasion}
-\author[Roberto Castellotti]{Roberto Castellotti \\ {\small Supervised by: prof. Giovanni Lagorio}}
+\author[Roberto Castellotti]{Roberto Castellotti \\ {\small Supervised by: Prof. Giovanni Lagorio}}
 \institute{Università di Genova}
 \date{2022}
 
@@ -19,23 +20,67 @@
 \frame{\titlepage}
 
 \begin{frame}{fundamentals: Android}
-    https://developer.android.com/guide/components/fundamentals 
+
+    \begin{figure}
+        \centering \includegraphics[scale=0.25]{android.png}
+        \caption{\href{https://source.android.com/devices/architecture}{https://source.android.com/devices/architecture}}
+    \end{figure}
+
 \end{frame}
 
 \begin{frame}{fundamentals: java to bytecode and back}
-mobisec native code
-\end{frame}
 
-\begin{frame}{fundamentals: unlocking bootloader, recovery, root (con magisk)}
-    lineage, magisk, twrp, tool vari approfondimento dm verity
-    a cosa serve il root
-\end{frame}
-
-
-\begin{frame}{root detection: why}
+    \begin{figure}
+        \centering \includegraphics[scale=0.2]{java-to-dex.png}
+        \caption{\href{https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM}{MOBISEC 2020 - 10 - Native Code}}
+    \end{figure}
 
 \end{frame}
 
+\begin{frame}{\texttt{.dex} and \texttt{.smali}}
+
+    \begin{itemize}
+        \item up until android 4.4 "KitKat" Dalvik was integral part of software stack
+        \item \texttt{dx} is used to convert Java \texttt{.class} to {.dex} format executable by the DVM
+        \item from android 5.0 "Lollipop" ART is the only included runtime, uses same bytecode and \texttt{.dex} files
+        \item \href{https://github.com/JesusFreke/smali}{JesusFreke/smali}: assembler/disassembler for the dex format used by dalvik, we obtain smali code when decompiling with \texttt{apktool}
+    \end{itemize}
+
+\end{frame}
+
+% \begin{frame}
+
+%     \begin{itemize}
+%         \item TWRP ()
+%         \item systemless root (magisk) perche farlo e dm-verity
+%         \item lineageOS and gapps
+%     \end{itemize}
+
+% \end{frame}
+
+\begin{frame}[fragile]{sample smali code}
+
+\begin{minted}[fontsize=\scriptsize]{smali}
+.method private static checkRootMethod1()Z
+    .registers 2
+    .line 1
+    sget-object v0, Landroid/os/Build;->TAGS:Ljava/lang/String;
+    if-eqz v0, :cond_e
+    const-string v1, "test-keys"
+    .line 2
+    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v0
+    if-eqz v0, :cond_e
+    const/4 v0, 0x1
+    goto :goto_f
+    :cond_e
+    const/4 v0, 0x0
+    :goto_f
+    return v0
+.end method
+\end{minted}
+    
+\end{frame}
 
 \begin{frame}[fragile]{root detection: how}
 
@@ -83,10 +128,10 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 
    The patching process is usually a matter of finding the methods performing root detection and patching them, here is an example from a popular financial services company's application:
 
-\begin{figure}
-    \centering \includegraphics[scale=1.4]{patch.png}
-    \caption{patching \mintinline{smali}{.method public static isDeviceRooted()Z} }
-\end{figure}
+    \begin{figure}
+        \centering \includegraphics[scale=1.4]{patch.png}
+        \caption{patching \mintinline{smali}{.method public static isDeviceRooted()Z} }
+    \end{figure}
 
 \end{frame}
 
@@ -105,14 +150,101 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
     
 \end{frame}
 
-\begin{frame}{tools used}
+\begin{frame}[fragile]{frida: \texttt{script.js}} 
+\begin{minted}[fontsize=\scriptsize]{javascript}
+Java.perform(function () {
+  var PackageManager = Java.use("android.app.ApplicationPackageManager");
+  var NativeFile = Java.use("java.io.File");
+  var Runtime = Java.use("java.lang.Runtime");
+
+  PackageManager.getPackageInfo.overload(
+    "java.lang.String",
+    "int"
+  ).implementation = function (pname, flags) {
+      send("Bypass root check for package: " + pname);
+      pname = "set.package.name.to.a.fake.one.so.we.can.bypass.it";
+    }
+    return this.getPackageInfo
+      .overload("java.lang.String", "int")
+      .call(this, pname, flags);
+  };
+
+  NativeFile.exists.implementation = function () {
+    var name = NativeFile.getName.call(this);
+      send("Bypass return value for binary: " + name);
+      return false;
+  };
+});
+
+\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]{com.revolut.revolut (fintech)}
+    
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=0.07]{revolut.png}
+            \caption{original apk}
+            \end{figure}
+        \column{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[scale=0.07]{revolut-patched.png}
+            \caption{patched}
+            \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{com.scottyab.rootbeer.sample}
+    
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=0.07]{rootbeer.png}
+            \caption{original apk}
+            \end{figure}
+        \column{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[scale=0.07]{rootbeer-patched.png}
+            \caption{patched}
+            \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{a popular financial services company's application}
+    
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=0.07]{wu.png}
+            \caption{original apk}
+            \end{figure}
+        \column{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[scale=0.07]{wu-patched.png}
+            \caption{patched}
+            \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{tools and sources}
 
     \begin{itemize}
         \item \href{https://developer.android.com/studio}{Android Studio}
         \item \href{https://github.com/iBotPeaches/Apktool}{iBotPeaches/Apktool}:
         A tool for reverse engineering Android apk files
         \item \href{https://github.com/skylot/jadx}{skylot/jadx}: Dex to Java decompiler
-        \item \href{https://github.com/scottyab/rootbeer}{scottyab/rootbeer}: Simple to use root checking Android library and sample app
+        \item \href{https://github.com/scottyab/rootbeer}{scottyab/rootbeer}: root checking Android library and sample app
+        \item \href{https://en.wikipedia.org/wiki/Dalvik}{https://en.wikipedia.org/wiki/Dalvik}
+        \item \href{https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html}{Dalvik Bytecode}
+        \item \href{https://source.android.com/devices/architecture/modular-system/art}{Anroid Runtime}
     \end{itemize}
     
 \end{frame}

@@ -4,7 +4,6 @@ Java.perform(function () {
 
   var PackageManager = Java.use("android.app.ApplicationPackageManager");
   var NativeFile = Java.use("java.io.File");
-  var Runtime = Java.use("java.lang.Runtime");
 
   PackageManager.getPackageInfo.overload(
     "java.lang.String",
