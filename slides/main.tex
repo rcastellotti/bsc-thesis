@@ -83,6 +83,10 @@
 \end{frame}
 
 \begin{frame}[fragile]{root detection: how}
+a
+\end{frame}
+
+\begin{frame}[fragile]{root detection: how}
 
     \begin{itemize}
         \item check for root management apps (\texttt{com.topjohnwu.magisk})
@@ -129,7 +133,7 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
    The patching process is usually a matter of finding the methods performing root detection and patching them, here is an example from a popular financial services company's application:
 
     \begin{figure}
-        \centering \includegraphics[scale=1.4]{patch.png}
+        \centering \includegraphics[scale=1.2]{patch.png}
         \caption{patching \mintinline{smali}{.method public static isDeviceRooted()Z} }
     \end{figure}
 
@@ -245,6 +249,7 @@ Java.perform(function () {
         \item \href{https://en.wikipedia.org/wiki/Dalvik}{https://en.wikipedia.org/wiki/Dalvik}
         \item \href{https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html}{Dalvik Bytecode}
         \item \href{https://source.android.com/devices/architecture/modular-system/art}{Anroid Runtime}
+        \item \href{https://developer.android.com/guide/components/fundamentals}{https://developer.android.com/guide/components/fundamentals}
     \end{itemize}
     
 \end{frame}
