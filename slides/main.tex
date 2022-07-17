@@ -21,19 +21,15 @@
 
 \begin{frame}{fundamentals: Android}
 
-    \begin{figure}
-        \centering \includegraphics[scale=0.25]{android.png}
-        \caption{\href{https://source.android.com/devices/architecture}{https://source.android.com/devices/architecture}}
-    \end{figure}
+    \centering \includegraphics[scale=0.25]{android.png}
+    \href{https://source.android.com/devices/architecture}{https://source.android.com/devices/architecture} 
 
 \end{frame}
 
 \begin{frame}{fundamentals: java to bytecode and back}
 
-    \begin{figure}
-        \centering \includegraphics[scale=0.2]{java-to-dex.png}
-        \caption{\href{https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM}{MOBISEC 2020 - 10 - Native Code}}
-    \end{figure}
+    \centering \includegraphics[scale=0.2]{java-to-dex.png}\\
+    \href{https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM}{MOBISEC 2020 - 10 - Native Code}
 
 \end{frame}
 
@@ -48,43 +44,31 @@
 
 \end{frame}
 
-% \begin{frame}
 
-%     \begin{itemize}
-%         \item TWRP ()
-%         \item systemless root (magisk) perche farlo e dm-verity
-%         \item lineageOS and gapps
-%     \end{itemize}
+% \begin{frame}[fragile]{sample smali code}
 
+% \begin{minted}[fontsize=\scriptsize]{smali}
+% .method private static checkRootMethod1()Z
+%     .registers 2
+%     .line 1
+%     sget-object v0, Landroid/os/Build;->TAGS:Ljava/lang/String;
+%     if-eqz v0, :cond_e
+%     const-string v1, "test-keys"
+%     .line 2
+%     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+%     move-result v0
+%     if-eqz v0, :cond_e
+%     const/4 v0, 0x1
+%     goto :goto_f
+%     :cond_e
+%     const/4 v0, 0x0
+%     :goto_f
+%     return v0
+% .end method
+% \end{minted}
+    
 % \end{frame}
 
-\begin{frame}[fragile]{sample smali code}
-
-\begin{minted}[fontsize=\scriptsize]{smali}
-.method private static checkRootMethod1()Z
-    .registers 2
-    .line 1
-    sget-object v0, Landroid/os/Build;->TAGS:Ljava/lang/String;
-    if-eqz v0, :cond_e
-    const-string v1, "test-keys"
-    .line 2
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v0
-    if-eqz v0, :cond_e
-    const/4 v0, 0x1
-    goto :goto_f
-    :cond_e
-    const/4 v0, 0x0
-    :goto_f
-    return v0
-.end method
-\end{minted}
-    
-\end{frame}
-
-\begin{frame}[fragile]{root detection: how}
-a
-\end{frame}
 
 \begin{frame}[fragile]{root detection: how}
 
@@ -114,17 +98,16 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 
 \begin{frame}{patch-and-reinstall}
 
-    \begin{itemize}
-        \item {\footnotesize \texttt{adb pull /data/com/app/com.package.name app.apk}}
-        \item {\footnotesize \texttt{apktool d app.apk -output app}}
+    \begin{enumerate}[<+->]
+        \item pull the apk
+        \item {\footnotesize \texttt{apktool d app.apk}}
         \item patch
-        \item {\footnotesize \texttt{apktool b app -output rebuilt-app.apk}}
-        \item {\footnotesize \texttt{zipalign -f -p 4 rebuilt-app.apk  aligned-rebuilt-app.apk}}
-        \item {\footnotesize \texttt{apksigner sign --ks ~/key.jks  aligned-rebuilt-app.apk}}
-        \item {\footnotesize \texttt{adb install aligned-rebuilt-app.apk}}
+        \item {\footnotesize \texttt{apktool b app}}
+        \item sign the apk with {\footnotesize \texttt{apksigner}}
+        \item reinstall the patched apk
         % well technically "this" approach needs it in order to pull the apk, but we can still obtain the apk using com.aurora.store
         \item this approach does not require the android device to be rooted 
-    \end{itemize}
+    \end{enumerate}
 
 \end{frame}
 
