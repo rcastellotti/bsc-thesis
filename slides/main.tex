@@ -138,7 +138,7 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 \end{frame}
 
 \begin{frame}[fragile]{frida: \texttt{script.js}} 
-\begin{minted}[fontsize=\scriptsize]{javascript}
+\begin{minted}[fontsize=\tiny]{javascript}
 Java.perform(function () {
   var PackageManager = Java.use("android.app.ApplicationPackageManager");
   var NativeFile = Java.use("java.io.File");
@@ -165,11 +165,13 @@ Java.perform(function () {
 
 \end{minted}
 
+\centering{partially adapted from \href{https://codeshare.frida.re/@dzonerzy/fridantiroot/}{@dzonerzy/fridantiroot/}}
+
 \end{frame}
 
 \begin{frame}[fragile]{com.revolut.revolut (fintech)}
     
-    \begin{columns}
+    \begin{columns} 
         \column{0.5\textwidth}
         \begin{figure}
             \centering
