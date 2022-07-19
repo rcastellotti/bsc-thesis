@@ -22,7 +22,7 @@
 \begin{frame}{fundamentals: Android}
 
     \centering \includegraphics[scale=0.25]{android.png}
-    \href{https://source.android.com/devices/architecture}{https://source.android.com/devices/architecture} 
+    \href{https://source.android.com/devices/architecture}{https://source.android.com/devices/architecture}
 
 \end{frame}
 
@@ -65,7 +65,7 @@
 %     return v0
 % .end method
 % \end{minted}
-    
+
 % \end{frame}
 
 
@@ -73,7 +73,7 @@
 
     \begin{itemize}[<+->]
         \item check for root management apps (\texttt{com.topjohnwu.magisk})
-\begin{minted}[fontsize=\footnotesize]{java}
+              \begin{minted}[fontsize=\footnotesize]{java}
 import android.content.pm.PackageManager;
 import android.content.Context;
 private final Context mContext;
@@ -83,12 +83,12 @@ pm.getPackageInfo(packageName, 0);
         \item check root cloaking apps {\small (\texttt{com.devadvance.rootcloak},\texttt{de.robv.android.xposed.installer})}
         \item check for dangerous applications (\texttt{com.dimonvideo.luckypatcher})
         \item check for binaries (\texttt{busybox,su})
-\begin{minted}[fontsize=\footnotesize]{java}
+              \begin{minted}[fontsize=\footnotesize]{java}
 File f = new File(path, filename);
 boolean fileExists = f.exists();
 \end{minted}
         \item check if some paths are writable (\texttt{/system, /sbin, /etc})
-\begin{minted}[fontsize=\footnotesize]{java}
+              \begin{minted}[fontsize=\footnotesize]{java}
 InputStream inputstream = Runtime.getRuntime().exec("mount")
 \end{minted}
     \end{itemize}
@@ -104,8 +104,8 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
         \item {\footnotesize \texttt{apktool b app}}
         \item sign the APK with {\footnotesize \texttt{apksigner}}
         \item reinstall the patched APK
-        % well technically "this" approach needs it in order to pull the apk, but we can still obtain the apk using com.aurora.store
-        \item this approach does not require the android device to be rooted 
+              % well technically "this" approach needs it in order to pull the apk, but we can still obtain the apk using com.aurora.store
+        \item this approach does not require the android device to be rooted
     \end{enumerate}
 
 \end{frame}
@@ -120,7 +120,7 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 
 \end{frame}
 
-\begin{frame}{frida: a dynamic toolkit} 
+\begin{frame}{frida: a dynamic toolkit}
 
     \begin{itemize}[<+->]
         \item provides ability to inject scripts into black box processes.
@@ -131,11 +131,11 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
         \item \textbf{on computer:} {\footnotesize \texttt{frida -U -l script.js -f com.package.name}}
         \item this approach could be better since it allows to patch applications without losing original package signature
     \end{itemize}
-    
+
 \end{frame}
 
-\begin{frame}[fragile]{frida: \texttt{script.js}} 
-\begin{minted}[fontsize=\tiny]{javascript}
+\begin{frame}[fragile]{frida: \texttt{script.js}}
+    \begin{minted}[fontsize=\tiny]{javascript}
 Java.perform(function () {
   var PackageManager = Java.use("android.app.ApplicationPackageManager");
   var NativeFile = Java.use("java.io.File");
@@ -162,62 +162,67 @@ Java.perform(function () {
 
 \end{minted}
 
-\centering{partially adapted from \href{https://codeshare.frida.re/@dzonerzy/fridantiroot/}{@dzonerzy/fridantiroot}}
+    \centering{partially adapted from \href{https://codeshare.frida.re/@dzonerzy/fridantiroot/}{@dzonerzy/fridantiroot}}
 
 \end{frame}
 
 \begin{frame}[fragile]{com.revolut.revolut (fintech)}
-    
-    \begin{columns} 
+
+    \begin{columns}
         \column{0.5\textwidth}
         \begin{figure}
             \centering
             \includegraphics[scale=0.07]{revolut.png}
             \caption{original APK}
-            \end{figure}
+        \end{figure}
         \column{0.5\textwidth}
-            \begin{figure}
+        \begin{figure}
             \centering
             \includegraphics[scale=0.07]{revolut-patched.png}
             \caption{patched}
-            \end{figure}
+        \end{figure}
     \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{com.scottyab.rootbeer.sample}
-    
+
     \begin{columns}
         \column{0.5\textwidth}
         \begin{figure}
             \centering
             \includegraphics[scale=0.07]{rootbeer.png}
             \caption{original APK}
-            \end{figure}
+        \end{figure}
         \column{0.5\textwidth}
-            \begin{figure}
+        \begin{figure}
             \centering
             \includegraphics[scale=0.07]{rootbeer-patched.png}
             \caption{patched}
-            \end{figure}
+        \end{figure}
     \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{a popular financial services company's application}
-    
+
     \begin{columns}
         \column{0.5\textwidth}
         \begin{figure}
             \centering
             \includegraphics[scale=0.07]{wu.png}
             \caption{original APK}
-            \end{figure}
+        \end{figure}
         \column{0.5\textwidth}
-            \begin{figure}
+        \begin{figure}
             \centering
             \includegraphics[scale=0.07]{wu-patched.png}
             \caption{patched}
-            \end{figure}
+        \end{figure}
     \end{columns}
+\end{frame}
+
+\begin{frame}{}
+    \centering \Huge
+    \emph{Thank You for your attention, Questions?}
 \end{frame}
 
 \begin{frame}{tools and sources}
@@ -225,7 +230,7 @@ Java.perform(function () {
     \begin{itemize}
         \item \href{https://developer.android.com/studio}{Android Studio}
         \item \href{https://github.com/iBotPeaches/Apktool}{iBotPeaches/Apktool}:
-        A tool for reverse engineering Android apk files
+              A tool for reverse engineering Android apk files
         \item \href{https://github.com/skylot/jadx}{skylot/jadx}: Dex to Java decompiler
         \item \href{https://github.com/scottyab/rootbeer}{scottyab/rootbeer}: root checking Android library and sample app
         \item \href{https://en.wikipedia.org/wiki/Dalvik}{https://en.wikipedia.org/wiki/Dalvik}
@@ -233,7 +238,7 @@ Java.perform(function () {
         \item \href{https://source.android.com/devices/architecture/modular-system/art}{Anroid Runtime}
         \item \href{https://developer.android.com/guide/components/fundamentals}{https://developer.android.com/guide/components/fundamentals}
     \end{itemize}
-    
+
 \end{frame}
 
 \end{document}
