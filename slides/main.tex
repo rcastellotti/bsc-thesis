@@ -71,7 +71,7 @@
 
 \begin{frame}[fragile]{root detection: how}
 
-    \begin{itemize}
+    \begin{itemize}[<+->]
         \item check for root management apps (\texttt{com.topjohnwu.magisk})
 \begin{minted}[fontsize=\footnotesize]{java}
 import android.content.pm.PackageManager;
@@ -124,7 +124,7 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 
 \begin{frame}{frida: a dynamic toolkit} 
 
-    \begin{itemize}
+    \begin{itemize}[<+->]
         \item provides ability to inject scripts into black box processes.
         \item portable (Windows, macOS, GNU/Linux, iOS, Android)
         \item \textbf{injected mode}: \texttt{frida-server}: \texttt{frida-core} over TCP
