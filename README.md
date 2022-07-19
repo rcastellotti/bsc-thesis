@@ -5,15 +5,4 @@
 ## generate a signing key
 `keytool -genkey -v -keystore key.jks -alias rc -keyalg RSA -keysize 2048 -validity 10000`
 
-## com.westernunion.moneytransferr3app.eu
-
-+ `java -jar ~/bin/apktool_2.6.1.jar d western-union.apk`
-+ `patch -p1 < western-union.patch`
-+ `./build.sh western-union`
-
-
-## using frida 
-
-+ `com.pay4vend.bapp`
-+ `com.revolut.revolut` 
-+ `com.scottyab.rootbeer.sample.debug` 
+`build.sh` is a simple script to rebuild, align, sign and install an apk
