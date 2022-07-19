@@ -16,45 +16,4 @@
 
 + `com.pay4vend.bapp`
 + `com.revolut.revolut` 
-+ some features of `com.scottyab.rootbeer.sample.debug` 
-
-
-## todo
-
-+ indagare safetynet
-
-
-## errori riscontrati 
-
-`~/Android/Sdk/platform-tools/adb install app_name.apk`
-
-```
-adb: failed to install nosu.apk: Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES: Failed collecting certificates for /data/app/vmdl1915796444.tmp/base.apk: Failed to collect certificates from /data/app/vmdl1915796444.tmp/base.apk: Attempt to get length of null array]
-```
-
-Dobbiamo firmarlo:
-
-`~/Android/Sdk/build-tools/33.0.0/apksigner sign --ks ../../key.jks  app_name.apk`
-
-Ora installiamolo: 
-
-`~/Android/Sdk/platform-tools/adb install app_name.apk`
-
-```
-adb: failed to install nosu.apk: Failure [-124: Failed parse during installPackageLI: Targeting R+ (version 30 and above) requires the resources.arsc of installed APKs to be stored uncompressed and aligned on a 4-byte boundary]
-```
-
-Dobbiamo allinearlo
-
-`~/Android/Sdk/build-tools/33.0.0/zipalign -f -p 4 nosu.apk  aligned-nosu.apk`
-
-```
-adb: failed to install aligned-nosu.apk: Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES: Failed collecting certificates for /data/app/vmdl2022680343.tmp/base.apk: Failed to collect certificates from /data/app/vmdl2022680343.tmp/base.apk: META-INF/KEY0.SF indicates /data/app/vmdl2022680343.tmp/base.apk is signed using APK Signature Scheme v2, but no such signature was found. Signature stripped?]
-```
-
-`~/Android/Sdk/build-tools/33.0.0/apksigner sign --ks ../../key.jks  aligned-nosu.apk`
-
-
-ora installiamolo per davvero  
-
-`~/Android/Sdk/platform-tools/adb install aligned-nosu.apk`
++ `com.scottyab.rootbeer.sample.debug` 
