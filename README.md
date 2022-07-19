@@ -5,4 +5,6 @@
 ## generate a signing key
 `keytool -genkey -v -keystore key.jks -alias rc -keyalg RSA -keysize 2048 -validity 10000`
 
+## misc
+
 `build.sh` is a simple script to rebuild, align, sign and install an apk
