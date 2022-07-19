@@ -14,7 +14,7 @@
 \author[Roberto Castellotti]{Roberto Castellotti \\ {\small Supervised by: Prof. Giovanni Lagorio}}
 \institute{Università di Genova}
 \date{2022}
-
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
 \begin{document}
 
 \frame{\titlepage}
@@ -26,7 +26,7 @@
 
 \end{frame}
 
-\begin{frame}{fundamentals: java to bytecode and back}
+\begin{frame}{fundamentals: Java to bytecode and back}
 
     \centering \includegraphics[scale=0.2]{java-to-dex.png}\\
     \href{https://docs.google.com/presentation/d/14nid9QJrSRUd4T_48KZMhWqKT_UdLg7EM-RH0HFQYdM}{MOBISEC 2020 - 10 - Native Code}
@@ -80,7 +80,7 @@ private final Context mContext;
 PackageManager pm = mContext.getPackageManager();
 pm.getPackageInfo(packageName, 0);
 \end{minted}
-        \item check root cloaking appps {\small (\texttt{com.devadvance.rootcloak},\texttt{de.robv.android.xposed.installer})}
+        \item check root cloaking apps {\small (\texttt{com.devadvance.rootcloak},\texttt{de.robv.android.xposed.installer})}
         \item check for dangerous applications (\texttt{com.dimonvideo.luckypatcher})
         \item check for binaries (\texttt{busybox,su})
 \begin{minted}[fontsize=\footnotesize]{java}
@@ -98,12 +98,12 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 \begin{frame}{patch-and-reinstall}
 
     \begin{enumerate}[<+->]
-        \item pull the apk
+        \item pull the APK
         \item {\footnotesize \texttt{apktool d app.apk}}
         \item patch
         \item {\footnotesize \texttt{apktool b app}}
-        \item sign the apk with {\footnotesize \texttt{apksigner}}
-        \item reinstall the patched apk
+        \item sign the APK with {\footnotesize \texttt{apksigner}}
+        \item reinstall the patched APK
         % well technically "this" approach needs it in order to pull the apk, but we can still obtain the apk using com.aurora.store
         \item this approach does not require the android device to be rooted 
     \end{enumerate}
@@ -112,15 +112,13 @@ InputStream inputstream = Runtime.getRuntime().exec("mount")
 
 \begin{frame}[fragile]{patch-and-reinstall: an example}
 
-   The patching process is usually a matter of finding the methods performing root detection and patching them, here is an example from a popular financial services company's application:
-
+    The patching process is usually a matter of finding the methods performing root detection and patching them, here is an example from a popular financial services company's application:
     \begin{figure}
         \centering \includegraphics[scale=1.2]{patch.png}
         \caption{patching \mintinline{smali}{.method public static isDeviceRooted()Z} }
     \end{figure}
 
 \end{frame}
-
 
 \begin{frame}{frida: a dynamic toolkit} 
 
@@ -175,7 +173,7 @@ Java.perform(function () {
         \begin{figure}
             \centering
             \includegraphics[scale=0.07]{revolut.png}
-            \caption{original apk}
+            \caption{original APK}
             \end{figure}
         \column{0.5\textwidth}
             \begin{figure}
@@ -193,7 +191,7 @@ Java.perform(function () {
         \begin{figure}
             \centering
             \includegraphics[scale=0.07]{rootbeer.png}
-            \caption{original apk}
+            \caption{original APK}
             \end{figure}
         \column{0.5\textwidth}
             \begin{figure}
@@ -211,7 +209,7 @@ Java.perform(function () {
         \begin{figure}
             \centering
             \includegraphics[scale=0.07]{wu.png}
-            \caption{original apk}
+            \caption{original APK}
             \end{figure}
         \column{0.5\textwidth}
             \begin{figure}
